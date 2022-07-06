@@ -31,11 +31,18 @@ public class Main {
 
         Queue<int[]> q = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
         q.offer(new int[]{start, 0});
+        
+        boolean[] visited = new boolean[N+1];
 
         while(!q.isEmpty()) {
             int[] arr = q.poll();
             int nowCity = arr[0];
             int nowCost = arr[1];
+            
+            if(visited[nowCity]) {
+                continue;
+            }
+            visited[nowCity] = true;
 
             if(nowCity == destination) {
                 System.out.println(cost[destination]);
