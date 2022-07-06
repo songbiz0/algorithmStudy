@@ -12,13 +12,17 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int[] wages = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 
+        int i = 0;
+        int j = 0;
+        long sum = 0;
         long max = 0;
-        for(int i=0; i<=n-m; i++) {
-            long sum = 0;
-            for(int j=i; j<i+m; j++) {
-                sum += wages[j];
-            }
-            max = Math.max(max, sum);
+        while(j < m - 1) {
+            sum += wages[j++];
+        }
+        while(j < n) {
+            sum += wages[j++];
+            max = Math.max(sum, max);
+            sum -= wages[i++];
         }
 
         System.out.println(max);
